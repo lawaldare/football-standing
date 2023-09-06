@@ -1,6 +1,6 @@
 # Football Standings
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.15. and it was forked from Attilla repo [BehaviourSubjectApp](https://github.com/AttilaMuller/football-standings). So I made the following updates:
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.15. by Attila Muller [here](https://github.com/AttilaMuller/football-standings). So I made the following updates:
 
 - Updated the Angular version from 8 to 16;
 - Changed the components to standalone components
