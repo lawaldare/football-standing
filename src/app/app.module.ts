@@ -10,7 +10,6 @@ import {
   HttpClient,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Interceptor } from './services/app.interceptor';
 import { StandingService } from './services/standing.service';
 
 @NgModule({
@@ -22,11 +21,7 @@ import { StandingService } from './services/standing.service';
     StandingsComponent,
     HeaderComponent,
   ],
-  providers: [
-    HttpClient,
-    StandingService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-  ],
+  providers: [HttpClient, StandingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

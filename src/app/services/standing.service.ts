@@ -1,32 +1,35 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { map, switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StandingService {
-  private readonly API =
-    'https://cors-anywhere.herokuapp.com/https://api.football-data.org/v4/competitions/';
+  private readonly newAPI = 'https://v3.football.api-sports.io/standings';
 
-  // https://cors-anywhere.herokuapp.com/corsdemo - use this link to request temporary access if it returns 403;
-  private readonly leagues = {
-    bundesliga: 'BL1',
-    premierLeague: 'PL',
-    serieA: 'SA',
-    primeraDivision: 'PD',
-  };
-
-  selectedLeague = signal<string>('premierLeague');
+  selectedLeague = signal<string>('39');
 
   constructor(private http: HttpClient) {}
 
   private standings$ = toObservable(this.selectedLeague).pipe(
-    switchMap((league: string) =>
-      this.http.get(`${this.API}${this.leagues[league]}/standings`)
-    ),
-    map((response: any) => response.standings[0].table)
+    switchMap((league: string) => {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'x-rapidapi-key': environment.apiToken,
+        }),
+      };
+      return this.http.get(
+        `${this.newAPI}?league=${league}&season=2023`,
+        httpOptions
+      );
+    }),
+    map((response: any) => {
+      return response.response[0].league.standings[0];
+    })
   );
 
   standings = toSignal(this.standings$, { initialValue: [] });

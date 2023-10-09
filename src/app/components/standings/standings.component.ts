@@ -27,7 +27,7 @@ export class StandingsComponent {
     'goalDifference',
   ];
 
-  league = this.standingService.selectedLeague;
+  // league = this.standingService.selectedLeague;
   standings = this.standingService.standings;
 
   constructor(private standingService: StandingService) {}
