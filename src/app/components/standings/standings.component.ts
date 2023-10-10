@@ -15,9 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class StandingsComponent {
   columnsToDisplay = [
-    'position',
     'name',
-    'points',
     'playedGames',
     'won',
     'draw',
@@ -25,6 +23,7 @@ export class StandingsComponent {
     'goalsFor',
     'goalsAgainst',
     'goalDifference',
+    'points',
   ];
 
   // league = this.standingService.selectedLeague;
@@ -34,5 +33,9 @@ export class StandingsComponent {
 
   getStandings(league: string) {
     this.standingService.selectLeague(league);
+  }
+
+  selectYear(year: string) {
+    this.standingService.selectYear(year);
   }
 }
