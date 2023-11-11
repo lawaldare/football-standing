@@ -9,12 +9,12 @@ td {
   width: 50px;
 }
 
-td:nth-child(1) {
+td:nth-child(2) {
   width: 200px;
   font-weight: 500;
 }
 
-td:nth-child(9) {
+td:nth-child(10) {
   font-weight: 500;
 }
 
